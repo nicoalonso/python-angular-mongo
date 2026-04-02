@@ -62,7 +62,7 @@ Si usas Windows, el fichero se encuentra en `C:\Windows\System32\drivers\etc\hos
 
 ### Copiar y modificar el fichero `.env`
 
-Copia el fichero de distribución .env.dist a .env en caso de que no exista. En las carpetas `core` y `editor` también encontrarás un fichero .env.dist, haz lo mismo en cada una de ellas.
+Copia el fichero de distribución `.env.dist` a `.env` en caso de que no exista. En las carpetas `core` y `editor` también encontrarás un fichero `.env.dist`, haz lo mismo en cada una de ellas.
 
 ```bash
 cp .env.dist .env
@@ -116,7 +116,7 @@ Siga los siguientes pasos para configurar RabbitMQ:
 
 3. En la sección de "Queues", crea una nueva cola con el nombre `library`.
 
-4. En la sección de "Bindings", vincula la cola `library` al exchange `library` con la clave de enrutamiento `app.library`.
+4. En la sección de "Bindings", vincula la cola `library` al exchange `library` con la clave de enrutamiento `library`.
 
 ## OpenAI - Configuración inicial
 
