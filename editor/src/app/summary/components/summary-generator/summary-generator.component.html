@@ -1,0 +1,78 @@
+@switch (summaryState()) {
+  @case(SummaryState.None) {
+    <p-button severity="secondary"
+              type="button"
+              [text]="true"
+              [label]="`Generar ${label()} con IA`"
+              size="small"
+              icon="fas fa-robot"
+              (click)="onGenerate()"></p-button>
+  }
+  @case(SummaryState.Pending) {
+    <p-button severity="warn"
+              type="button"
+              [text]="true"
+              size="small"
+              icon="fas fa-spin fa-circle-notch"
+              [label]="`Generando ${label()} con IA...`">
+    </p-button>
+  }
+  @case(SummaryState.Failed) {
+    <p-button severity="danger"
+              type="button"
+              [text]="true"
+              [label]="`Error al generar ${label()} con IA`"
+              size="small"
+              icon="fas fa-triangle-exclamation"
+              (click)="onGenerate()"></p-button>
+  }
+  @case(SummaryState.Completed) {
+    <p-button severity="success"
+              type="button"
+              [text]="true"
+              [label]="`${label()} generada con IA`"
+              size="small"
+              icon="fas fa-robot"></p-button>
+  }
+}
+
+<p-dialog [header]="title()"
+          [modal]="true" [(visible)]="modalVisible"
+          [style]="{ width: '60vw', height: '540px' }"
+          [closable]="true"
+          [resizable]="false">
+  <form [formGroup]="form" (ngSubmit)="onMake()">
+    <section class="flex flex-column gap-2">
+      <p class="line-height-4">
+        Para <strong class="text-pink-600">generar la {{ label() }}</strong> del {{ name() }} con IA,
+        se necesita que <strong class="text-pink-600">indique una URL</strong>
+        <span class="text-gray-400">(por ejemplo de wikipedia)</span>
+        que contenga información sobre el {{ name() }}.<br />
+        La IA consultará esa URL y generará la {{ label() }} a partir de la información que encuentre en ella.
+      </p>
+      <div class="flex flex-column gap-2">
+        <label class="pl-3" for="summary-generator-url">URL del {{ name() }}</label>
+        <input pInputText
+               id="summary-generator-url"
+               autocomplete="off"
+               formControlName="url" />
+        <p-message severity="error" text="La URL es obligatoria"
+                   [hidden]="!hasError('url', 'empty')" />
+        <p-message severity="error" text="La URL no es válida"
+                   [hidden]="!hasError('url', 'pattern')" />
+      </div>
+      <p class="line-height-4">
+        <i class="fas fa-triangle-exclamation text-yellow-500"></i>
+        Atención: el texto generado reemplazará el texto actual de la {{ label() }}.
+      </p>
+      <div class="flex flex-row gap-4 mt-5 justify-content-end">
+        <p-button (click)="modalVisible.set(false)"
+                  label="Cancelar"
+                  icon="fas fa-xmark"
+                  severity="secondary"
+                  type="button" />
+        <p-button label="Generar" icon="fas fa-rocket"  severity="primary" type="submit" />
+      </div>
+    </section>
+  </form>
+</p-dialog>

@@ -1,0 +1,104 @@
+name: library-python-angular-mongo
+
+services:
+  core:
+    hostname: core-library
+    build:
+      context: docker/python-core
+      dockerfile: develop/Dockerfile
+      args:
+        HOST_USER: ${HOST_USER}
+        HOST_USER_ID: ${HOST_USER_ID}
+        HOST_GROUP: ${HOST_GROUP}
+        HOST_GROUP_ID: ${HOST_GROUP_ID}
+        TIMEZONE: ${TIMEZONE}
+    volumes:
+      - ./core:/app:rw,cached
+    environment:
+      UV_PROJECT_ENVIRONMENT: /home/${HOST_USER}/.venv
+    networks:
+      library-python:
+
+  worker:
+    build:
+      context: docker/python-cli/
+      dockerfile: develop/Dockerfile
+      args:
+        HOST_USER: ${HOST_USER}
+        HOST_USER_ID: ${HOST_USER_ID}
+        HOST_GROUP: ${HOST_GROUP}
+        HOST_GROUP_ID: ${HOST_GROUP_ID}
+        TIMEZONE: ${TIMEZONE}
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+        restart: true
+    volumes:
+      - ./core:/app:rw,cached
+    environment:
+      UV_PROJECT_ENVIRONMENT: /home/${HOST_USER}/.venv
+    command: ["nodemon", "--exec", "uv", "run", "worker.py"]
+    networks:
+      library-python:
+
+  editor:
+    build:
+      context: docker/editor/
+      dockerfile: develop/Dockerfile
+      args:
+        HOST_USER: ${HOST_USER}
+        HOST_USER_ID: ${HOST_USER_ID}
+        HOST_GROUP: ${HOST_GROUP}
+        HOST_GROUP_ID: ${HOST_GROUP_ID}
+        TIMEZONE: ${TIMEZONE}
+    volumes:
+      - ./editor:/app:rw,cached
+    networks:
+      library-python:
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/develop/Dockerfile
+    depends_on:
+      - core
+      - editor
+    volumes:
+      - ./core:/srv/app/core:ro
+    links:
+      - core
+      - editor
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      library-python:
+
+  mongo:
+    image: mongo:6.0.11
+    ports:
+      - "27017:27017"
+    volumes:
+      - ${MONGO_DB_PATH}:/data/db
+      - ${MONGO_CONFIG_PATH}:/data/configdb
+    networks:
+      library-python:
+
+  rabbitmq:
+    hostname: rabbit
+    image: rabbitmq:3-management
+    healthcheck:
+      test: [ "CMD-SHELL", "rabbitmq-diagnostics -q ping" ]
+      interval: 5s
+      timeout: 30s
+      retries: 5
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ${RABBITMQ_DATA_PATH}:/var/lib/rabbitmq/
+    networks:
+      library-python:
+
+networks:
+  library-python:

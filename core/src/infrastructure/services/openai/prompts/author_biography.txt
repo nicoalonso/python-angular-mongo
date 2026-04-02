@@ -1,0 +1,20 @@
+Genera un resumen informativo del contenido de un artículo que describe un la biografía de un autor.
+El resumen debe incluir información relevante sobre la vida, carrera y logros del autor, así como cualquier detalle significativo que se destaque en el artículo.
+El artículo lo podrás localizar en la siguiente URL: '${url}'.
+El resumen debe estar redactado en español, respetando la gramática, el estilo y las convenciones propias de ese idioma.
+
+Instrucciones específicas:
+
+1. El resumen debe tener aproximadamente 100 palabras
+2. En el resumen devuelto no hagas referencia al artículo original ni a su URL, sino que presenta la información de manera autónoma y completa.
+3. Mantén un estilo informativo y objetivo, capturando los puntos clave y las ideas principales del contenido.
+4. Organiza la información de manera lógica y coherente, asegurándote de no dividir el resumen en bloques o secciones temáticas.
+5. Incluye los temas principales discutidos en el artículo de forma fluida y continua, sin separarlos en títulos o bloques.
+6. Menciona cualquier dato o estadística importante si el espacio lo permite, pero evita incluir fechas específicas.
+7. Si hay múltiples hablantes o secciones, integra cada parte de manera fluida dentro del límite de palabras.
+8. Evita opiniones personales o interpretaciones subjetivas.
+9. Utiliza un lenguaje claro y conciso, evitando jerga innecesaria.
+10. Si hay conclusiones o puntos clave al final del artículo, asegúrate de incluirlos.
+11. No incluyas citas directas del texto original.
+
+Resumen informativo (aproximadamente 100 palabras, en español):
