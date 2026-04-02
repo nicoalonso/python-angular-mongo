@@ -28,7 +28,7 @@ Casos de Uso:
 5. Un proveedor puede suministrar libros a la biblioteca, aumentando el stock de un libro.
 6. Inventario: cuando se adquiera o venda un libro, se lanzará un evento de inventario que actualizará el stock del libro en la biblioteca.
 7. A las 12:00 am de cada día, se ejecutará un proceso que revisará los préstamos vencidos y aplicará las multas correspondientes a los clientes.
-   (el cron que lanzará este proceso se ha omitido por simplicidad, pero se podría implementar usando un contenedor adicional usando el bundle [symfony/scheduler](https://symfony.com/doc/current/scheduler.html))
+   (el cron que lanzará este proceso se ha omitido por simplicidad, pero se podría implementar usando un contenedor adicional.
 
 Caso de Uso con IA:
 
