@@ -28,7 +28,7 @@ Casos de Uso:
 5. Un proveedor puede suministrar libros a la biblioteca, aumentando el stock de un libro.
 6. Inventario: cuando se adquiera o venda un libro, se lanzará un evento de inventario que actualizará el stock del libro en la biblioteca.
 7. A las 12:00 am de cada día, se ejecutará un proceso que revisará los préstamos vencidos y aplicará las multas correspondientes a los clientes.
-   (el cron que lanzará este proceso se ha omitido por simplicidad, pero se podría implementar usando un contenedor adicional usando el bundle [symfony/scheduler](https://symfony.com/doc/current/scheduler.html))
+   (el cron que lanzará este proceso se ha omitido por simplicidad, pero se podría implementar usando un contenedor adicional.
 
 Caso de Uso con IA:
 
@@ -62,7 +62,7 @@ Si usas Windows, el fichero se encuentra en `C:\Windows\System32\drivers\etc\hos
 
 ### Copiar y modificar el fichero `.env`
 
-Copia el fichero de distribución .env.dist a .env en caso de que no exista. En las carpetas `core` y `editor` también encontrarás un fichero .env.dist, haz lo mismo en cada una de ellas.
+Copia el fichero de distribución `.env.dist` a `.env` en caso de que no exista. En las carpetas `core` y `editor` también encontrarás un fichero `.env.dist`, haz lo mismo en cada una de ellas.
 
 ```bash
 cp .env.dist .env
@@ -116,7 +116,7 @@ Siga los siguientes pasos para configurar RabbitMQ:
 
 3. En la sección de "Queues", crea una nueva cola con el nombre `library`.
 
-4. En la sección de "Bindings", vincula la cola `library` al exchange `library` con la clave de enrutamiento `app.library`.
+4. En la sección de "Bindings", vincula la cola `library` al exchange `library` con la clave de enrutamiento `library`.
 
 ## OpenAI - Configuración inicial
 
