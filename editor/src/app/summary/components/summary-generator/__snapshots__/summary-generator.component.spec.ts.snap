@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`SummaryGeneratorComponent should create 1`] = `
+<app-summary-generator
+  SummaryState={[Function Object]}
+  destroyRef={[Function NodeInjectorDestroyRef]}
+  form={[Function FormGroup]}
+  intervalMilliseconds={[Function Number]}
+  label={[Function Function]}
+  modalVisible={[Function Function]}
+  name={[Function Function]}
+  summaryService={[Function SummaryGeneratorServiceStub]}
+  summaryState={[Function Function]}
+  textGenerated={[Function OutputEmitterRef]}
+  title={[Function Function]}
+  type={[Function Function]}
+>
+  <p-button
+    icon="fas fa-robot"
+    pc11=""
+    severity="secondary"
+    size="small"
+    type="button"
+  >
+    <button
+      class="p-ripple p-button p-component p-button-secondary p-button-text p-button-sm"
+      data-pc-name="button"
+      data-pc-section="root"
+      pc12=""
+      pc13=""
+      pripple=""
+      type="button"
+    >
+      <span
+        class="fas fa-robot p-button-icon p-button-icon-left"
+        data-pc-section="icon"
+      />
+      <span
+        aria-hidden="false"
+        class="p-button-label"
+        data-pc-section="label"
+      >
+        Generar descripción con IA
+      </span>
+    </button>
+  </p-button><p-dialog
+    pc1=""
+  >
+  </p-dialog>
+</app-summary-generator>
+`;
